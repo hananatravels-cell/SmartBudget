@@ -12,6 +12,7 @@
 <link rel="manifest" href="manifest.json">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" type="image/png" href="icon-192.png">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6977944210814749" crossorigin="anonymous"></script>
 <meta name="description" content="Family Budget - Family Budget & Ration Planner. Apne family budget, ration aur expenses asani se manage karein.">
 <meta name="keywords" content="family budget, family budget, ration planner, expense tracker, household budget pakistan">
 <meta name="author" content="Hanana">
@@ -268,10 +269,13 @@ footer{background:var(--surface);border-top:2px solid var(--border);padding:24px
 
   <!-- TOP AD -->
   <div class="ad-banner">
-    <!-- Google AdSense Ad Unit -->
-    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-    <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX" data-ad-format="auto"></ins> -->
-    📢 Ad Space — Google AdSense Banner (728x90)
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-6977944210814749"
+         data-ad-slot="auto"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
 
   <!-- ══════════════════ DASHBOARD ══════════════════ -->
@@ -288,6 +292,28 @@ footer{background:var(--surface);border-top:2px solid var(--border);padding:24px
           <option>November 2025</option><option>December 2025</option>
         </select>
       </div>
+    </div>
+
+    <!-- RATION CHART — SABSE PEHLE -->
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-title">🛒 Ration Summary — Is Mahine Ka</div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+        <div style="text-align:center;flex:1">
+          <div style="font-size:28px;font-weight:800;color:var(--accent)" id="dashRationTotal">Rs. 0</div>
+          <div style="font-size:11px;color:var(--muted)">Total Ration Cost</div>
+        </div>
+        <div style="text-align:center;flex:1">
+          <div style="font-size:28px;font-weight:800;color:var(--success)" id="dashRationItems">0</div>
+          <div style="font-size:11px;color:var(--muted)">Total Items</div>
+        </div>
+        <div style="text-align:center;flex:1">
+          <div style="font-size:28px;font-weight:800;color:var(--warn)" id="dashChecked">0</div>
+          <div style="font-size:11px;color:var(--muted)">Khareed Liye</div>
+        </div>
+      </div>
+      <!-- Category Chart -->
+      <div id="dashRationChart" style="display:flex;flex-direction:column;gap:8px"></div>
+      <button class="btn btn-primary btn-sm" style="margin-top:12px;width:100%" onclick="showPage('ration')">🛒 Ration Dekhein / Edit Karein</button>
     </div>
 
     <div class="dash-grid">
@@ -390,7 +416,7 @@ footer{background:var(--surface);border-top:2px solid var(--border);padding:24px
 
     <!-- Middle AD -->
     <div class="ad-banner">
-      📢 Ad Space — Google AdSense (336x280)
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6977944210814749" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
     <!-- Affiliate Products -->
@@ -462,36 +488,26 @@ footer{background:var(--surface);border-top:2px solid var(--border);padding:24px
       <div class="cat-tab" onclick="filterCat('staple',this)">🌾 Staples</div>
       <div class="cat-tab" onclick="filterCat('protein',this)">🥩 Protein</div>
       <div class="cat-tab" onclick="filterCat('dairy',this)">🥛 Dairy</div>
-      <div class="cat-tab" onclick="filterCat('produce',this)">🥦 Sabzi/Fruit</div>
+      <div class="cat-tab" onclick="filterCat('produce',this)">🥦 Sabzi</div>
       <div class="cat-tab" onclick="filterCat('spice',this)">🌶️ Masalay</div>
       <div class="cat-tab" onclick="filterCat('other',this)">📦 Other</div>
     </div>
 
-    <div class="card" style="overflow-x:auto">
-      <table class="ration-table" id="rationTable">
-        <thead>
-          <tr>
-            <th class="check-col">✓</th>
-            <th>Item</th>
-            <th>Qty</th>
-            <th>Unit</th>
-            <th>Price/Unit (Rs.)</th>
-            <th>Total (Rs.)</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody id="rationBody"></tbody>
-        <tfoot>
-          <tr>
-            <td colspan="5" style="text-align:right;font-weight:700;padding:12px">Total Ration Cost:</td>
-            <td style="font-weight:800;color:var(--accent);font-size:16px" id="rationTotal">Rs. 0</td>
-            <td></td>
-          </tr>
-        </tfoot>
-      </table>
+    <!-- TOTAL BAR -->
+    <div class="card" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;margin-bottom:12px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-size:11px;opacity:0.8">Total Ration Cost</div>
+          <div style="font-size:24px;font-weight:800" id="rationTotal">Rs. 0</div>
+        </div>
+        <div style="font-size:40px">🛒</div>
+      </div>
     </div>
 
-    <div class="ad-banner">📢 Ad Space — Google AdSense</div>
+    <!-- SIMPLE CARDS -->
+    <div id="rationCards"></div>
+
+    <div class="ad-banner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6977944210814749" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   </div>
 
   <!-- ══════════════════ EXPENSE MANAGER ══════════════════ -->
@@ -577,7 +593,7 @@ footer{background:var(--surface);border-top:2px solid var(--border);padding:24px
       </table>
     </div>
 
-    <div class="ad-banner">📢 Ad Space — Google AdSense</div>
+    <div class="ad-banner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6977944210814749" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script></div>
   </div>
 
   <!-- ══════════════════ ABOUT ══════════════════ -->
@@ -674,7 +690,7 @@ footer{background:var(--surface);border-top:2px solid var(--border);padding:24px
 
 <!-- FOOTER AD -->
 <div style="max-width:1100px;margin:0 auto;padding:0 16px">
-  <div class="ad-banner">📢 Ad Space — Google AdSense Footer Banner</div>
+  <div class="ad-banner"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6977944210814749" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle = window.adsbygoogle || []).push({});</script> Footer Banner</div>
 </div>
 
 <!-- FOOTER -->
@@ -831,6 +847,39 @@ function updateDashboard(){
   const remaining = budget - totalSpent;
   const pct = budget > 0 ? Math.min(100,(totalSpent/budget)*100) : 0;
 
+  // Ration Chart Update
+  const checkedItems = data.ration.filter(i=>i.checked).length;
+  document.getElementById('dashRationTotal').textContent = 'Rs. '+rationTotal.toLocaleString();
+  document.getElementById('dashRationItems').textContent = data.ration.length;
+  document.getElementById('dashChecked').textContent = checkedItems;
+
+  // Category wise ration chart
+  const cats = {
+    staple:{label:'🌾 Staples',total:0},
+    protein:{label:'🥩 Protein',total:0},
+    dairy:{label:'🥛 Dairy',total:0},
+    produce:{label:'🥦 Sabzi/Fruit',total:0},
+    spice:{label:'🌶️ Masalay',total:0},
+    other:{label:'📦 Other',total:0},
+  };
+  data.ration.forEach(i=>{
+    if(cats[i.cat]) cats[i.cat].total += calcItemTotal(i);
+  });
+  const maxCat = Math.max(...Object.values(cats).map(c=>c.total),1);
+  document.getElementById('dashRationChart').innerHTML = Object.values(cats)
+    .filter(c=>c.total>0)
+    .sort((a,b)=>b.total-a.total)
+    .map(c=>`
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="font-size:11px;color:var(--muted);width:90px;flex-shrink:0">${c.label}</div>
+      <div style="flex:1;height:20px;background:var(--surface2);border-radius:6px;overflow:hidden">
+        <div style="height:100%;width:${Math.max(4,(c.total/maxCat)*100)}%;background:linear-gradient(90deg,var(--accent),var(--accent3));border-radius:6px;display:flex;align-items:center;padding-left:6px">
+          <span style="font-size:10px;color:white;font-weight:600;white-space:nowrap">Rs. ${c.total.toLocaleString()}</span>
+        </div>
+      </div>
+    </div>
+  `).join('')||'<div style="text-align:center;color:var(--muted);font-size:13px;padding:10px">Ration data nahi hai</div>';
+
   document.getElementById('dBudget').textContent = 'Rs. '+budget.toLocaleString();
   document.getElementById('dExpenses').textContent = 'Rs. '+expTotal.toLocaleString();
   document.getElementById('dRation').textContent = 'Rs. '+rationTotal.toLocaleString();
@@ -848,25 +897,52 @@ let currentCat = 'all';
 let searchTerm = '';
 
 function renderRation(){
-  const tbody = document.getElementById('rationBody');
   let items = data.ration;
   if(currentCat !== 'all') items = items.filter(i=>i.cat===currentCat);
   if(searchTerm) items = items.filter(i=>i.name.toLowerCase().includes(searchTerm.toLowerCase()));
-  tbody.innerHTML = items.map(item=>`
-    <tr id="row-${item.id}">
-      <td class="check-col"><input type="checkbox" ${item.checked?'checked':''} onchange="toggleCheck(${item.id})"></td>
-      <td>${item.emoji} ${item.name}</td>
-      <td><input type="number" value="${item.qty}" min="0" style="width:70px" onchange="updateRation(${item.id},'qty',this.value)"></td>
-      <td><select style="width:70px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:5px;color:var(--text);font-family:'Poppins'" onchange="updateRation(${item.id},'unit',this.value)">
-        ${['kg','gm','ltr','ml','pcs','dozen','btl','pkt'].map(u=>`<option ${item.unit===u?'selected':''}>${u}</option>`).join('')}
-      </select></td>
-      <td><input type="number" value="${item.price}" min="0" style="width:90px" onchange="updateRation(${item.id},'price',this.value)"></td>
-      <td class="item-total">Rs. ${calcItemTotal(item).toLocaleString()}</td>
-      <td><button class="btn btn-danger btn-sm" onclick="deleteRation(${item.id})">🗑️</button></td>
-    </tr>
-  `).join('');
+
   const total = data.ration.reduce((s,i)=>s+calcItemTotal(i),0);
   document.getElementById('rationTotal').textContent = 'Rs. '+total.toLocaleString();
+
+  const container = document.getElementById('rationCards');
+  if(!items.length){
+    container.innerHTML='<div class="empty"><div class="empty-icon">🛒</div><p>Koi item nahi</p></div>';
+    updateDashboard(); return;
+  }
+
+  container.innerHTML = items.map(item=>`
+    <div class="card" style="padding:12px;margin-bottom:8px;${item.checked?'opacity:0.6':''}">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+        <input type="checkbox" ${item.checked?'checked':''} onchange="toggleCheck(${item.id})"
+          style="width:20px;height:20px;accent-color:var(--accent);cursor:pointer;flex-shrink:0">
+        <div style="font-size:20px">${item.emoji}</div>
+        <div style="flex:1;font-size:14px;font-weight:600;${item.checked?'text-decoration:line-through':''}">${item.name}</div>
+        <div style="font-size:15px;font-weight:800;color:var(--accent)">Rs. ${calcItemTotal(item).toLocaleString()}</div>
+        <button onclick="deleteRation(${item.id})" style="background:rgba(229,57,53,0.1);border:none;border-radius:8px;padding:6px 8px;cursor:pointer;color:var(--danger);font-size:14px">🗑️</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+        <div>
+          <div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Miqdar</div>
+          <input type="number" value="${item.qty}" min="0"
+            style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:14px;font-weight:700;color:var(--accent);outline:none;font-family:'Poppins'"
+            onchange="updateRation(${item.id},'qty',this.value)">
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Unit</div>
+          <select onchange="updateRation(${item.id},'unit',this.value)"
+            style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:6px 4px;font-size:13px;color:var(--text);outline:none;font-family:'Poppins'">
+            ${['kg','gm','ltr','ml','pcs','dozen','btl','pkt'].map(u=>`<option ${item.unit===u?'selected':''}>${u}</option>`).join('')}
+          </select>
+        </div>
+        <div>
+          <div style="font-size:9px;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Rate (Rs.)</div>
+          <input type="number" value="${item.price}" min="0"
+            style="width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:6px 8px;font-size:14px;font-weight:700;color:var(--text);outline:none;font-family:'Poppins'"
+            onchange="updateRation(${item.id},'price',this.value)">
+        </div>
+      </div>
+    </div>
+  `).join('');
   updateDashboard();
 }
 
